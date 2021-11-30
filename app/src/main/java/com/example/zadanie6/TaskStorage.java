@@ -1,30 +1,17 @@
 package com.example.zadanie6;
 
-import android.os.Bundle;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class TaskStorage {
-    private static final TaskStorage taskStorage = new TaskStorage();
-    private final List<Task> tasks = new ArrayList<>();
-    public static TaskStorage getInstance() {
-        return taskStorage;
-    }
-
-    public Task getTask(UUID id) {
-        for (Task task : tasks) {
-            if (task.getId().equals(id)) {
-                return task;
-            }
-        }
-        return null;
-    }
-
+    private static TaskStorage instance = new TaskStorage();
+    private List<Task> tasks;
 
     private TaskStorage() {
-        for (int i = 1; i < 101; i++) {
+        final int tasksCount = 100;
+        tasks = new ArrayList<Task>(tasksCount);
+        for (int i = 1; i <= tasksCount; ++i) {
             Task task = new Task();
             task.setName("Zadanie #" + i);
             task.setDone(i % 3 == 0);
@@ -32,7 +19,23 @@ public class TaskStorage {
         }
     }
 
+    public static TaskStorage getInstance() {
+        return instance;
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+
     public List<Task> getTasks() {
-        return  tasks;
+        return tasks;
+    }
+
+    public Task getTask(UUID id) {
+        for (Task task : tasks) {
+            if (task.getId().equals(id))
+                return task;
+        }
+        return null;
     }
 }
