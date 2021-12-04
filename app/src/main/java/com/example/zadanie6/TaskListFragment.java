@@ -3,8 +3,12 @@ package com.example.zadanie6;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,10 +52,20 @@ public class TaskListFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
     }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_task_menu, menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+    }
 
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView nameTextView, dateTextView;
         private Task task;
+        private ImageView iconImageView;
 
         public TaskHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_task, parent, false));
@@ -73,6 +87,14 @@ public class TaskListFragment extends Fragment {
             intent.putExtra(KEY_EXTRA_TASK_ID, task.getId());
             startActivity(intent);
         }
+
+        if (task.isDone()){
+            iconImageView.setImageResource(R.drawable.ic_checked);
+        }
+        else{
+            iconImageView.setImageResource(R.drawable.ic_unchecked);
+        }
+
     }
 
     private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
