@@ -1,6 +1,4 @@
 
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 h
 8app/src/main/java/com/example/zadanie6/MainActivity.java,e\f\ef16714873ebfe3e3e640811987f75bb29b32847
 `
