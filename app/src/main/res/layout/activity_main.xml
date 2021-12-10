@@ -6,7 +6,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/task_item_padding"
-    tools:context=".MainActivity">
-
-
-</FrameLayout>
+    tools:context=".MainActivity"
+    android:layout_margin="@dimen/fragment_frame_margin"/>
